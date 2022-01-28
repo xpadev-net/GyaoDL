@@ -1,0 +1,12 @@
+LICENSE
+LICENSE_JP
+MANIFEST.in
+README.md
+setup.py
+GyaoDL/__init__.py
+GyaoDL/__main__.py
+GyaoDL/gyaodl.py
+GyaoDL.egg-info/PKG-INFO
+GyaoDL.egg-info/SOURCES.txt
+GyaoDL.egg-info/dependency_links.txt
+GyaoDL.egg-info/top_level.txt
