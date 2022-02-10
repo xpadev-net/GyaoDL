@@ -33,9 +33,6 @@ class GyaoDL:
         req = urllib.request.Request('{}?{}'.format(url, urllib.parse.urlencode(params)))
         with urllib.request.urlopen(req) as res:
             graphql = json.loads(res.read())
-        if graphql["data"]["content"]["video"]["delivery"]["drm"] is True:
-            print("This movie is drm enabled")
-            sys.exit(2)
         url = f'https://edge.api.brightcove.com/playback/v1/accounts/4235717419001/videos/{graphql["data"]["content"]["video"]["delivery"]["id"]}'
         req = urllib.request.Request(url, headers={
             "Accept": "application/json;pk=BCpkADawqM1O4pwi3SZ75b8DE1c2l78PZ418NByBa33h737rWv6uhPJHYkaZ6xHINTj5oOqa0"
@@ -47,6 +44,9 @@ class GyaoDL:
             if stream["ext_x_version"] == "4" and stream["type"] == "application/x-mpegURL":
                 hlsurl = stream["src"]
                 break
+            if stream["ext_x_version"] == "5":
+                print("This movie is drm enabled")
+                sys.exit(2)
         if hlsurl == "":
             print("Active stream is not found")
             sys.exit(1)
